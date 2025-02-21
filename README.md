@@ -1,100 +1,55 @@
-Full Stack To-Do App - Backend API
+# Full Stack To-Do App
 
-This project provides a REST API for a To-Do application with User Authentication and Todo Management.
+## Overview
+This is a Full Stack To-Do Application that allows users to create, manage, and delete tasks with subtasks. Users can sign up, log in, and interact with their tasks securely.
 
-📌 Technologies Used
+## Features
+- User authentication (Signup & Login)
+- Create, update, and delete tasks
+- Add and remove subtasks
+- Secure backend API with JWT authentication
+- Responsive frontend built with React
 
-Node.js + Express.js - Backend framework
+## Technologies Used
+### Frontend
+- React
+- Vite
+- CSS
 
-MongoDB + Mongoose - Database
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- JWT for authentication
 
-bcryptjs - Password hashing
+## Installation & Setup
+### 1. Clone the Repository
+git clone https://github.com/NerusuPavani37/full-stack-todo-app
+cd your-repo
 
-jsonwebtoken (JWT) - Authentication
+### 2. Setup Backend
+cd backend
+npm install
+Create a `.env` file in the backend folder and add your environment variables (MongoDB URI, JWT secret, etc.).
+npm run server
 
-dotenv - Environment variables
+### 3. Setup Frontend
+cd frontend
+npm install
+npm run dev
 
-cors - Cross-origin requests
+## Usage
+- Open `http://localhost:5173/` (or the given port) in your browser.
+- Sign up or log in to access the To-Do app.
+- Add tasks and manage subtasks.
 
-
-🛠 API Endpoints
-
-🔹 User Authentication APIs
-
-1️⃣ User Signup (Register a new user)
-
-Endpoint: POST /api/users/signup 
-Body:{
-  "name": "John Doe",
-  "email": "johndoe@example.com",
-  "password": "mypassword"
-}
-
-Response:{
-  "msg": "User Registered Successfully"
-}
-
-2️⃣ User Login (Get access token)
-
-Endpoint: POST /api/users/login 
-Body:{
-  "email": "johndoe@example.com",
-  "password": "mypassword"
-}
-
-Response:{
-  "token": "your_jwt_token",
-  "user": {
-    "id": "user_id",
-    "name": "John Doe",
-    "email": "johndoe@example.com"
-  }
-}
-
-🔹 To-Do APIs (Requires Authentication)
-
-🔒 You must include the token in the request header:
-
-Authorization: Bearer your_jwt_token
-
-3️⃣ Create a To-Do
-
-Endpoint: POST /api/todos
-Headers:Authorization: Bearer your_jwt_token
-
-Body:{
-  "title": "Buy groceries",
-  "completed": false
-}
-
-Response:{
-  "msg": "Todo created successfully",
-  "todo": {
-    "id": "todo_id",
-    "title": "Buy groceries",
-    "completed": false,
-    "user": "user_id"
-  }
-}
-
-4️⃣ Get All To-Dos (For Logged-in User)
-
-Endpoint: GET /api/todos
-Headers:Authorization: Bearer your_jwt_token
-
-Response:[
-  {
-    "id": "todo_id",
-    "title": "Buy groceries",
-    "completed": false,
-    "user": "user_id"
-  }
-]
-
-📌 Notes
-
-Authentication: Every request (except signup/login) must include a valid token in the Authorization header.
-
-Database: The app connects to MongoDB via MONGO_URI in .env.
-
-Error Handling: If something goes wrong, the API returns a JSON error message.
+## API Endpoints
+| Method | Endpoint           | Description                 |
+|--------|--------------------|-----------------------------|
+| POST   | /api/users/signup  | User registration           |
+| POST   | /api/users/login   | User login                  |
+| GET    | /api/todos         | Get all tasks               |
+| POST   | /api/todos         | Add a new task              |
+| DELETE | /api/todos/:id     | Delete a task               |
+| POST   | /api/todos/:id/subtask | Add a subtask           |
+| DELETE | /api/todos/:id/subtask/:subId | Delete a subtask |
